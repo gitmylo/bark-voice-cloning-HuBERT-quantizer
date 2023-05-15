@@ -2,8 +2,18 @@ import os
 import shutil
 import zipfile
 
+import numpy
+import torchaudio
+
+from hubert.dump_mfcc_feature import dump_feature
+from hubert.pre_kmeans_hubert import CustomHubert
+
 
 def prepare(path):
+    """
+    Put all the training data in one folder
+    :param path: The path to the training data, with 2 subdirectories with zips, "semantic" and "wav", with equal pairs in both directories
+    """
     path = os.path.abspath(path)
     raw_data_paths = {
         'semantic': os.path.join(path, 'semantic'),
@@ -11,10 +21,8 @@ def prepare(path):
     }
     prepared_path = os.path.join(path, 'prepared')
 
-    if os.path.isdir(prepared_path):  # Already prepared
-        return
-
-    os.mkdir(prepared_path)
+    if not os.path.isdir(prepared_path):
+        os.mkdir(prepared_path)
 
     offset = 0
 
@@ -24,7 +32,6 @@ def prepare(path):
             'semantic': os.path.join(raw_data_paths['semantic'], zip_file),
             'wav': os.path.join(raw_data_paths['wav'], zip_file)
         }, prepared_path, offset)
-
 
 
 def extract_files(zip_files: dict[str, str], out: str, start_offset: int = 0) -> int:
@@ -39,7 +46,30 @@ def extract_files(zip_files: dict[str, str], out: str, start_offset: int = 0) ->
                         wav_zip.extract(file2, out)
                         shutil.move(os.path.join(out, file2.filename), os.path.join(out, f'{new_offset}_wav.wav'))
                         new_offset += 1
+            wav_zip.close()
+        semantic_zip.close()
+
     return new_offset
 
-def prepare_2(path):
 
+def prepare2(path, model):
+    prepared = os.path.join(path, 'prepared')
+    ready = os.path.join(path, 'ready')
+    hubert_model = CustomHubert(checkpoint_path=model)
+    if not os.path.isdir(ready):
+        os.mkdir(ready)
+
+    wav_string = '_wav.wav'
+    sem_string = '_semantic.npy'
+
+    for input_file in os.listdir(prepared):
+        input_path = os.path.join(prepared, input_file)
+        if input_file.endswith(wav_string):
+            print('Processing', input_file)
+            file_num = int(input_file[:-len(wav_string)])
+            wav, sr = torchaudio.load(input_path)
+            output = hubert_model.forward(wav, input_sample_hz=sr)
+            out_array = output.cpu().numpy()
+            numpy.save(os.path.join(ready, f'{file_num}_semantic_features.npy'), out_array)
+        elif input_file.endswith(sem_string):
+            shutil.copy(input_path, os.path.join(ready, input_file))
