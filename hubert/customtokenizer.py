@@ -6,21 +6,35 @@ from torch import nn, optim
 
 
 class CustomTokenizer(nn.Module):
+    # def __init__(self, hidden_size=1024, input_size=768, output_size=10000):
+    #     super(CustomTokenizer, self).__init__()
+    #
+    #     self.l1 = nn.ReLU(input_size, hidden_size)
+    #     self.l2 = nn.Linear(hidden_size, output_size)
+    #     self.sm = nn.Softmax(dim=1)
+    #     self.optimizer: optim.Optimizer = None
+    #     self.lossfunc = nn.CrossEntropyLoss()
+    #     self.output_size = output_size
+    #
+    # def forward(self, x):
+    #     x = self.l1(x)
+    #     x = self.l2(x)
+    #     x = self.sm(x)
+    #     return x
     def __init__(self, hidden_size=1024, input_size=768, output_size=10000):
         super(CustomTokenizer, self).__init__()
-
-        self.l1 = nn.Linear(input_size, hidden_size)
-        self.l2 = nn.Linear(hidden_size, output_size)
-        self.sm = nn.Softmax(dim=1)
+        self.lstm = nn.LSTM(input_size, hidden_size, 2, batch_first=True)
+        self.fc = nn.Linear(hidden_size, output_size)
+        self.softmax = nn.LogSoftmax(dim=1)
         self.optimizer: optim.Optimizer = None
         self.lossfunc = nn.CrossEntropyLoss()
         self.output_size = output_size
 
     def forward(self, x):
-        x = self.l1(x)
-        x = self.l2(x)
-        x = self.sm(x)
-        return x
+        out, _ = self.lstm(x)
+        out = self.fc(out)
+        out = self.softmax(out)
+        return out
 
     @torch.no_grad()
     def get_token(self, x):
@@ -35,7 +49,8 @@ class CustomTokenizer(nn.Module):
         self.optimizer = optim.Adam(self.parameters(), 0.001)
 
     def train_step(self, x_train, y_train, log_loss=False):
-        y_train = y_train[:-1]
+        # y_train = y_train[:-1]
+        y_train = y_train[1:]
         y_train_hot = torch.zeros(len(y_train), self.output_size)
         y_train_hot[range(len(y_train)), y_train] = 1
         y_train_hot = y_train_hot.to('cuda')

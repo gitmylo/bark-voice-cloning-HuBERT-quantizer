@@ -5,7 +5,6 @@ import zipfile
 import numpy
 import torchaudio
 
-from hubert.dump_mfcc_feature import dump_feature
 from hubert.pre_kmeans_hubert import CustomHubert
 
 
