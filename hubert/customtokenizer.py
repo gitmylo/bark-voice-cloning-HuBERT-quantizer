@@ -62,11 +62,12 @@ class CustomTokenizer(nn.Module):
         optimizer.step()
 
 
-def auto_train(data_path, save_path='model.pth', load_model: str | None = None, save_epochs=5):
+def auto_train(data_path, save_path='model.pth', load_model: str | None = None, save_epochs=1):
     data_x, data_y = [], []
 
     model_training = CustomTokenizer().to('cuda')
     save_path = os.path.join(data_path, save_path)
+    base_save_path = '.'.join(save_path.split('.')[:-1])
     if load_model and os.path.isfile(load_model):
         print('Loading model from', load_model)
         model_training.load_state_dict(torch.load(load_model))
@@ -93,6 +94,10 @@ def auto_train(data_path, save_path='model.pth', load_model: str | None = None, 
             for x, y in zip(data_x, data_y):
                 model_training.train_step(torch.tensor(x).to('cuda'), torch.tensor(y).to('cuda'), j % 50 == 0)  # Print loss every 50 steps
                 j += 1
-        torch.save(model_training.state_dict(), save_path)
+        sd = model_training.state_dict()
+        save_p = save_path
+        save_p_2 = f'{base_save_path}_epoch_{epoch}.pth'
+        torch.save(sd, save_p)
+        torch.save(sd, save_p_2)
         print(f'Epoch {epoch} completed')
         epoch += 1
