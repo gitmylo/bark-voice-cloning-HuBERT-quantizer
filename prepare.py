@@ -64,11 +64,11 @@ def prepare2(path, model):
     for input_file in os.listdir(prepared):
         input_path = os.path.join(prepared, input_file)
         if input_file.endswith(wav_string):
+            file_num = int(input_file[:-len(wav_string)])
             fname = f'{file_num}_semantic_features.npy'
             print('Processing', input_file)
             if os.path.isfile(fname):
                 continue
-            file_num = int(input_file[:-len(wav_string)])
             wav, sr = torchaudio.load(input_path)
             output = hubert_model.forward(wav, input_sample_hz=sr)
             out_array = output.cpu().numpy()
