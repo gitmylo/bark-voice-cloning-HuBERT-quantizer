@@ -35,10 +35,7 @@ class CustomTokenizer(nn.Module):
 
     def train_step(self, x_train, y_train, log_loss=False):
         # y_train = y_train[:-1]
-        y_train = y_train[1:]
-        y_train_hot = torch.zeros(len(y_train), self.output_size)
-        y_train_hot[range(len(y_train)), y_train] = 1
-        y_train_hot = y_train_hot.to('cuda')
+        # y_train = y_train[1:]
 
         optimizer = self.optimizer
         lossfunc = self.lossfunc
@@ -47,6 +44,20 @@ class CustomTokenizer(nn.Module):
 
         # Forward pass
         y_pred = self(x_train)
+
+        y_train_len = len(y_train)
+        y_pred_len = y_pred.shape[0]
+
+        if y_train_len > y_pred_len:
+            diff = y_train_len - y_pred_len
+            y_train = y_train[diff:]
+        elif y_train_len < y_pred_len:
+            diff = y_pred_len - y_train_len
+            y_pred = y_pred[:-diff, :]
+
+        y_train_hot = torch.zeros(len(y_train), self.output_size)
+        y_train_hot[range(len(y_train)), y_train] = 1
+        y_train_hot = y_train_hot.to('cuda')
 
         # Calculate the loss
         loss = lossfunc(y_pred, y_train_hot)
