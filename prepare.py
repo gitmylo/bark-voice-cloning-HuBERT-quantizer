@@ -78,3 +78,4 @@ def prepare2(path, model):
             if os.path.isfile(fname):
                 continue
             shutil.copy(input_path, fname)
+    print('All set! We\'re ready to train!')
