@@ -25,6 +25,9 @@ What makes for good prompt audio? (in no particular order)
 
 ## How do I train it myself?
 Simply run the training commands.
+
+A simple way to create semantic data and wavs for training, is with my script: [bark-data-gen](https://github.com/gitmylo/bark-data-gen). But remember that the creation of the wavs will take around the same time if not longer than the creation of the semantics. This can take a while to generate because of that.
+
 For example, if you have a dataset with zips containing audio files, one zip for semantics, and one for the wav files. Inside of a folder called "Literature"
 
 You should run `process.py --path Literature --mode prepare` for extracting all the data to one directory
