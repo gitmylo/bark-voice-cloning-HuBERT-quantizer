@@ -70,6 +70,10 @@ def prepare2(path, model):
             if os.path.isfile(fname):
                 continue
             wav, sr = torchaudio.load(input_path)
+
+            if wav.shape[0] == 2:  # Stereo to mono if needed
+                wav = wav.mean(0, keepdim=True)
+
             output = hubert_model.forward(wav, input_sample_hz=sr)
             out_array = output.cpu().numpy()
             numpy.save(os.path.join(ready, fname), out_array)

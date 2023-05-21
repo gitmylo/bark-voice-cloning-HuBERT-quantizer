@@ -52,8 +52,7 @@ from hubert.customtokenizer import CustomTokenizer
 # Load the CustomTokenizer model from a checkpoint
 # With default config, you can use the pretrained model from huggingface
 # With the default setup from HuBERTManager, this will be in data/models/hubert/tokenizer.pth
-tokenizer = CustomTokenizer()  # The current provided models use the default model params
-tokenizer.load_state_dict(torch.load('data/models/hubert/tokenizer.pth'))
+tokenizer = CustomTokenizer.load_from_checkpoint('data/models/hubert/tokenizer.pth')  # Automatically uses the right layers
 
 # Process the semantic vectors from the previous HuBERT run (This works in batches, so you can send the entire HuBERT output)
 semantic_tokens = tokenizer.get_token(semantic_vectors)
