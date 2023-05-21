@@ -10,7 +10,7 @@ class HuBERTManager:
     def make_sure_hubert_installed():
         install_dir = os.path.join('data', 'models', 'hubert')
         if not os.path.isdir(install_dir):
-            os.mkdir(install_dir)
+            os.makedirs(install_dir, exist_ok=True)
         install_file = os.path.join(install_dir, 'hubert.pt')
         download_url = 'https://dl.fbaipublicfiles.com/hubert/hubert_base_ls960.pt'
         if not os.path.isfile(install_file):
@@ -23,7 +23,7 @@ class HuBERTManager:
     def make_sure_tokenizer_installed():
         install_dir = os.path.join('data', 'models', 'hubert')
         if not os.path.isdir(install_dir):
-            os.mkdir(install_dir)
+            os.makedirs(install_dir, exist_ok=True)
         install_file = os.path.join(install_dir, 'tokenizer.pth')
         repo = 'GitMylo/bark-voice-cloning'
         file = 'quantifier_hubert_base_ls960_14.pth'
