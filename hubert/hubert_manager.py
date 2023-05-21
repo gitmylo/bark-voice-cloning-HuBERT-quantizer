@@ -19,6 +19,7 @@ class HuBERTManager:
             print('Downloaded HuBERT')
         return install_file
 
+
     @staticmethod
     def make_sure_tokenizer_installed():
         install_dir = os.path.join('data', 'models', 'hubert')
