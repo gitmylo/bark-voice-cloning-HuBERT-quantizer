@@ -17,7 +17,7 @@ class HuBERTManager:
             print('Downloading HuBERT small model')
             urllib.request.urlretrieve(download_url, install_file)
             print('Downloaded HuBERT')
-
+        return install_file
 
     @staticmethod
     def make_sure_tokenizer_installed():
@@ -32,3 +32,4 @@ class HuBERTManager:
             huggingface_hub.hf_hub_download(repo, file, local_dir=install_dir, local_dir_use_symlinks=False)
             shutil.move(os.path.join(install_dir, file), install_file)
             print('Downloaded tokenizer')
+        return install_file
