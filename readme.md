@@ -3,7 +3,10 @@
 ## Voice cloning with bark in high quality?
 It's possible now.
 
-[joe biden example](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/raw/master/examples/biden_example.mov) (Idk how to embed videos lol)
+<video controls>
+  <source src="examples/biden_example.mov" type="video/mp4">
+</video>
+
 
 ## How do I clone a voice?
 [examples on huggingface model page](https://huggingface.co/GitMylo/bark-voice-cloning)
