@@ -1,5 +1,8 @@
 # Bark voice cloning
 
+## Please read
+This code works on python 3.10, i have not tested it on other versions. Some older versions will have issues.
+
 ## Voice cloning with bark in high quality?
 It's possible now.
 
