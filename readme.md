@@ -6,9 +6,8 @@ This code works on python 3.10, i have not tested it on other versions. Some old
 ## Voice cloning with bark in high quality?
 It's possible now.
 
-<video controls>
-  <source src="examples/biden_example.mov" type="video/mp4">
-</video>
+https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/assets/36931363/516375e2-d699-44fe-a928-cd0411982049
+
 
 
 ## How do I clone a voice?
