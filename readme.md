@@ -15,6 +15,8 @@ https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/assets/36931363/5
 
 [or use my webui](https://github.com/gitmylo/audio-webui)
 
+[or use my huggingface voice cloning space](https://huggingface.co/spaces/GitMylo/bark-voice-cloning)
+
 ## Voices cloned aren't very convincing, why are other people's cloned voices better than mine?
 Make sure these things are **NOT** in your voice input: (in no particular order)
 * Noise (You can use a noise remover before)
