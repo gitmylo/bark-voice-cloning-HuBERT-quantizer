@@ -89,7 +89,7 @@ class CustomTokenizer(nn.Module):
         optimizer.step()
 
     def save(self, path):
-        info_path = os.path.basename(path) + '/.info'
+        info_path = '.'.join(os.path.basename(path).split('.')[:-1]) + '/.info'
         torch.save(self.state_dict(), path)
         data_from_model = Data(self.input_size, self.hidden_size, self.output_size, self.version)
         with ZipFile(path, 'a') as model_zip:
