@@ -117,7 +117,8 @@ class CustomTokenizer(nn.Module):
         else:
             model = CustomTokenizer(data_from_model.hidden_size, data_from_model.input_size, data_from_model.output_size, data_from_model.version)
         model.load_state_dict(torch.load(path))
-        model = model.to(map_location)
+        if map_location:
+            model = model.to(map_location)
         return model
 
 
