@@ -1,0 +1,7 @@
+audiolm-pytorch
+fairseq
+huggingface-hub
+sentencepiece
+transformers
+soundfile; platform_system == "Windows"
+sox; platform_system != "Windows"
