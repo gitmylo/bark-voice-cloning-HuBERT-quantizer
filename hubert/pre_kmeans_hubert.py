@@ -1,10 +1,17 @@
+"""
+Modified HuBERT model without kmeans.
+Original author: https://github.com/lucidrains/
+Modified by: https://www.github.com/gitmylo/
+License: MIT
+"""
+
+# Modified code from https://github.com/lucidrains/audiolm-pytorch/blob/main/audiolm_pytorch/hubert_kmeans.py
+
 from pathlib import Path
 
 import torch
 from torch import nn
 from einops import pack, unpack
-
-import joblib
 
 import fairseq
 

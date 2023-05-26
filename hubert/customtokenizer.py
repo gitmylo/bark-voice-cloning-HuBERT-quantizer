@@ -1,3 +1,9 @@
+"""
+Custom tokenizer model.
+Author: https://www.github.com/gitmylo/
+License: MIT
+"""
+
 import json
 import os.path
 from zipfile import ZipFile
