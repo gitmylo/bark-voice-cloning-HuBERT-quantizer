@@ -1,3 +1,5 @@
 /model
 /Literature/semantic/*
 /Literature/wav/*
+**/speaker.wav
+**/speaker.npz
