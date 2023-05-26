@@ -33,41 +33,12 @@ What makes for good prompt audio? (in no particular order)
 * Around 10 seconds of data
 
 ## For developers: Implementing voice cloning in your bark projects
-* Simply copy the files from [this directory](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/tree/master/hubert) into your project.
-* The [hubert manager](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/blob/master/hubert/hubert_manager.py) contains methods to download HuBERT and the custom Quantizer model.
-* Loading the [CustomHuBERT](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/blob/master/hubert/pre_kmeans_hubert.py) should be pretty straightforward
-```python
-from hubert.pre_kmeans_hubert import CustomHubert
-import torchaudio
-
-# Load the HuBERT model,
-# checkpoint_path should work fine with data/models/hubert/hubert.pt for the default config
-hubert_model = CustomHubert(checkpoint_path='path/to/checkpoint')
-
-# Run the model to extract semantic features from an audio file, where wav is your audio file
-wav, sr = torchaudio.load('path/to/wav') # This is where you load your wav, with soundfile or torchaudio for example
-
-if wav.shape[0] == 2:  # Stereo to mono if needed
-    wav = wav.mean(0, keepdim=True)
-
-semantic_vectors = hubert_model.forward(wav, input_sample_hz=sr)
-```
-* Loading and running the [custom kmeans](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer)
-
-```python
-import torch
-from hubert.customtokenizer import CustomTokenizer
-
-# Load the CustomTokenizer model from a checkpoint
-# With default config, you can use the pretrained model from huggingface
-# With the default setup from HuBERTManager, this will be in data/models/hubert/tokenizer.pth
-tokenizer = CustomTokenizer.load_from_checkpoint('data/models/hubert/tokenizer.pth')  # Automatically uses the right layers
-
-# Process the semantic vectors from the previous HuBERT run (This works in batches, so you can send the entire HuBERT output)
-semantic_tokens = tokenizer.get_token(semantic_vectors)
-
-# Congratulations! You now have semantic tokens which can be used inside of a speaker prompt file.
-```
+* Simply clone this repo
+* Then install requirements `pip3.10 install -r requirements.txt`
+* make sure you are using python 3.10
+* Add your audio.wav
+* Run voiceCloning.py
+* now to generate text to speech, run barkEx.py
 
 ## How do I train it myself?
 Simply run the training commands.
