@@ -11,11 +11,13 @@ https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/assets/36931363/5
 
 
 ## How do I clone a voice?
-[examples on huggingface model page](https://huggingface.co/GitMylo/bark-voice-cloning)
+For developers:
+* [code examples on huggingface model page](https://huggingface.co/GitMylo/bark-voice-cloning)
 
-[or use my webui](https://github.com/gitmylo/audio-webui)
-
-[or use my huggingface voice cloning space](https://huggingface.co/spaces/GitMylo/bark-voice-cloning)
+For everyone:
+* [audio-webui with bark and voice cloning](https://github.com/gitmylo/audio-webui)
+* [online huggingface voice cloning space](https://huggingface.co/spaces/GitMylo/bark-voice-cloning)
+* [interactive python notebook](notebook.ipynb)
 
 ## Voices cloned aren't very convincing, why are other people's cloned voices better than mine?
 Make sure these things are **NOT** in your voice input: (in no particular order)
