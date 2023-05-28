@@ -45,9 +45,9 @@ What makes for good prompt audio? (in no particular order)
 
 ### Community
 
-| Author                                | Name                                                                                                                                                         | HuBERT Model                                                              | Quantizer Version | Epoch | Language | Dataset |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|-------------------|-------|----------|---------|
-| [HobisPL](https://github.com/HobisPL) | [polish-HuBERT-quantizer_8_epoch.pth](https://huggingface.co/Hobis/bark-voice-cloning-polish-HuBERT-quantizer/blob/main/polish-HuBERT-quantizer_8_epoch.pth) | [HuBERT Base](https://dl.fbaipublicfiles.com/hubert/hubert_base_ls960.pt) | 1                 | 8     | POL      | Unknown |
+| Author                                | Name                                                                                                                                                         | HuBERT Model                                                              | Quantizer Version | Epoch | Language | Dataset                                                                                                            |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|-------------------|-------|----------|--------------------------------------------------------------------------------------------------------------------|
+| [HobisPL](https://github.com/HobisPL) | [polish-HuBERT-quantizer_8_epoch.pth](https://huggingface.co/Hobis/bark-voice-cloning-polish-HuBERT-quantizer/blob/main/polish-HuBERT-quantizer_8_epoch.pth) | [HuBERT Base](https://dl.fbaipublicfiles.com/hubert/hubert_base_ls960.pt) | 1                 | 8     | POL      | [Hobis/bark-polish-semantic-wav-training](https://huggingface.co/datasets/Hobis/bark-polish-semantic-wav-training) |
 
 
 ## For developers: Implementing voice cloning in your bark projects
