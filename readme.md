@@ -34,6 +34,22 @@ What makes for good prompt audio? (in no particular order)
 * Regular/common voice (They usually have more success, it's still capable of cloning complex voices, but not as good at it)
 * Around 10 seconds of data
 
+## Pretrained models
+### Official
+
+| Name                                                                                                                                         | HuBERT Model                                                              | Quantizer Version | Epoch | Language |
+|----------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|-------------------|-------|----------|
+| [quantifier_hubert_base_ls960.pth](https://huggingface.co/GitMylo/bark-voice-cloning/blob/main/quantifier_hubert_base_ls960.pth)             | [HuBERT Base](https://dl.fbaipublicfiles.com/hubert/hubert_base_ls960.pt) | 0                 | 3     | ENG      |
+| [quantifier_hubert_base_ls960_14.pth](https://huggingface.co/GitMylo/bark-voice-cloning/blob/main/quantifier_hubert_base_ls960_14.pth)       | [HuBERT Base](https://dl.fbaipublicfiles.com/hubert/hubert_base_ls960.pt) | 0                 | 14    | ENG      |
+| [quantifier_V1_hubert_base_ls960_23.pth](https://huggingface.co/GitMylo/bark-voice-cloning/blob/main/quantifier_V1_hubert_base_ls960_23.pth) | [HuBERT Base](https://dl.fbaipublicfiles.com/hubert/hubert_base_ls960.pt) | 1                 | 23    | ENG      |
+
+### Community
+
+| Author                                | Name                                                                                                                                                         | HuBERT Model                                                              | Quantizer Version | Epoch | Language |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|-------------------|-------|----------|
+| [HobisPL](https://github.com/HobisPL) | [polish-HuBERT-quantizer_8_epoch.pth](https://huggingface.co/Hobis/bark-voice-cloning-polish-HuBERT-quantizer/blob/main/polish-HuBERT-quantizer_8_epoch.pth) | [HuBERT Base](https://dl.fbaipublicfiles.com/hubert/hubert_base_ls960.pt) | 1                 | 8     | POL      |
+
+
 ## For developers: Implementing voice cloning in your bark projects
 * Simply copy the files from [this directory](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/tree/master/hubert) into your project.
 * The [hubert manager](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/blob/master/hubert/hubert_manager.py) contains methods to download HuBERT and the custom Quantizer model.
