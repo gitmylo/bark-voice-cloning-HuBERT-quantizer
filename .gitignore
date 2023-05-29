@@ -3,3 +3,5 @@
 /Literature/wav/*
 **/speaker.wav
 **/speaker.npz
+
+__pycache__
