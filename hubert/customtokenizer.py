@@ -158,7 +158,7 @@ def auto_train(data_path, save_path='model.pth', load_model: str | None = None, 
         model_training = CustomTokenizer.load_from_checkpoint(load_model, 'cuda')
     else:
         print('Creating new model.')
-        model_training = CustomTokenizer(version=1).to('cuda')  # Settings for the model to run without lstm
+        model_training = CustomTokenizer(version=1).to('cuda')
     save_path = os.path.join(data_path, save_path)
     base_save_path = '.'.join(save_path.split('.')[:-1])
 
