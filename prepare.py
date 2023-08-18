@@ -7,6 +7,7 @@ import torchaudio
 
 from hubert.pre_kmeans_hubert import CustomHubert
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def prepare(path):
     """
@@ -54,7 +55,7 @@ def extract_files(zip_files: dict[str, str], out: str, start_offset: int = 0) ->
 def prepare2(path, model):
     prepared = os.path.join(path, 'prepared')
     ready = os.path.join(path, 'ready')
-    hubert_model = CustomHubert(checkpoint_path=model)
+    hubert_model = CustomHubert(checkpoint_path=model, device=device)
     if not os.path.isdir(ready):
         os.mkdir(ready)
 
