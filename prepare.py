@@ -7,6 +7,7 @@ import torchaudio
 
 from hubert.pre_kmeans_hubert import CustomHubert
 
+import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def prepare(path):
@@ -71,6 +72,7 @@ def prepare2(path, model):
             if os.path.isfile(fname):
                 continue
             wav, sr = torchaudio.load(input_path)
+            wav = wav.to(device)
 
             if wav.shape[0] == 2:  # Stereo to mono if needed
                 wav = wav.mean(0, keepdim=True)
