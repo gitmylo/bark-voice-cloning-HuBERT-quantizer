@@ -7,6 +7,7 @@ import torchaudio
 
 from hubert.pre_kmeans_hubert import CustomHubert
 
+import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def prepare(path):
