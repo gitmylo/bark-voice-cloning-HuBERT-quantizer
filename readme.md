@@ -52,7 +52,7 @@ What makes for good prompt audio? (in no particular order)
 
 
 ## For developers: Implementing voice cloning in your bark projects
-* Simply copy the files from [this directory](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/tree/master/hubert) into your project.
+* Simply copy the files from [this directory](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/tree/master/bark_hubert_quantizer) into your project.
 * The [hubert manager](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/blob/master/hubert/hubert_manager.py) contains methods to download HuBERT and the custom Quantizer model.
 * Loading the [CustomHuBERT](https://github.com/gitmylo/bark-voice-cloning-HuBERT-quantizer/blob/master/hubert/pre_kmeans_hubert.py) should be pretty straightforward
 * The [notebook](notebook.ipynb) contains code to use on cuda or cpu. Instead of just cpu.
